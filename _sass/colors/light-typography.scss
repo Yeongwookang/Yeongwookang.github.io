@@ -36,13 +36,23 @@
     rgba(250, 250, 250, 0) 100%
   );
 
-  /* Sidebar */
+  /* Sidebar 
   --site-title-color: rgb(113, 113, 113);
   --site-subtitle-color: #717171;
   --sidebar-bg: #f6f8fa;
   --sidebar-muted-color: #545454;
   --sidebar-active-color: #1d1d1d;
   --sidebar-hover-bg: rgb(223, 233, 241, 0.64);
+  --sidebar-btn-bg: white;
+  --sidebar-btn-color: #8e8e8e;
+  --avatar-border-color: white; */
+  
+  --site-title-color: #FFFFFF;
+  --site-subtitle-color: #6d6c6b;
+  --sidebar-bg: radial-gradient(circle, #242424 0%, #1d1f27 100%);
+  --sidebar-muted-color: #6d6c6b;
+  --sidebar-active-color: rgb(255, 255, 255, 0.95);
+  --sidebar-hover-bg: rgb(54, 54, 54, 0.33);
   --sidebar-btn-bg: white;
   --sidebar-btn-color: #8e8e8e;
   --avatar-border-color: white;
