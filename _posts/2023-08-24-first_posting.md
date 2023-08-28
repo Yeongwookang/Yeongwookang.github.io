@@ -1,7 +1,8 @@
+
 ---
 title : 첫번째 게시글
 date : 2023-08-24 00:00:00 +09:00
-categories : [일상, 잡다]
+categories : [daily, blogging]
 tags : [daily] 
 ---
 
