@@ -3,6 +3,7 @@
 vendor
 Gemfile.lock
 
+
 # Jekyll cache
 .jekyll-cache
 _site
@@ -20,3 +21,6 @@ package-lock.json
 
 # Misc
 assets/js/dist
+
+# exe
+jekyll_serve.bat
