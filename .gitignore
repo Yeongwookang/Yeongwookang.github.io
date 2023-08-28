@@ -20,7 +20,7 @@ package-lock.json
 .vscode
 
 # Misc
-assets/js/dist
+# assets/js/dist
 
 # exe
 jekyll_serve.bat
