@@ -1,6 +1,6 @@
 ---
 title : Selenium을 활용한 WebScrapper
-date : 2023-08-24 00:00:00 +09:00
+date : 2023-08-02 00:00:00 +09:00
 categories : [Project, Python]
 tags : [selenium, python, flask, project] 
 ---
@@ -17,10 +17,6 @@ Chrome driver는 매번 맞춰서 파일을 넣기가 어려울것 같아서 크
 #### **Selenium**
 replit으로 할때는 beautifulsoup를 이용해서 하다가 Selenium의 메소드들을 새로 알아야 했다.
 https://www.selenium.dev/documentation/ 공식문서를 참조하면서 해결했다.
-
-<br>
-<br>
-<br>
 
 ## **결과**
 Selenium을 활용하여 키워드와 한번에 검색할 양을 정하면 처음 5개 페이지에 대해 스크랩해서 Excel 파일로 만들어주는 Scrapper를 만들었다.
@@ -44,28 +40,15 @@ find_element 메소드는 WebElement를 반환하고, find_elements는 WebElemen
 모든 문자열에 대해 ,를 대체하였는데도 postDate에서 글자 중간에 \n이 있었다.
 그 부분도 수정해주니 결과가 나왔다.
 
-
-<br>
-<br>
-<br>
-
 ### **csv파일로 만들기**
 csv 파일로 만들어주는 코드이다. 파이썬 기본 라이브러리의 파일 함수를 사용하였다.
 utf-8로만 인코딩하면 엑셀등에서 켰을때 글자가 깨져서 utf-8 sig로 인코딩 하였다.
-
-<br>
-<br>
-<br>
 
 ### **Flask** 
 
 keyword와 limit을 쿼리로 하는 페이지를 구현하였다. export 할때 다시 검색하여 하지 않도록 db={} 를 활용하여 임시저장한 뒤
 파일로 만들어 다운로드 가능하도록 하였다.
 Flask는 부트캠프에서는 간단하게만 해보았는데, 파일처리 등이 스프링보다는 편한 것 같다.
-
-<br>
-<br>
-<br>
 
 ## **고찰**
 
