@@ -1,7 +1,7 @@
 ---
 title : Clean Architecture
 date : 2023-06-04 00:00:00 +09:00
-categories : [Backend,Architecture]
+categories : [Backend, Architecture]
 tags : [study,architecture] 
 mermaid: true
 ---
@@ -27,7 +27,7 @@ The goal of software architecture is to minimize the lifetime cost (*development
 
 기능이 잘 동작하지만 구조가 엉망인 프로그램은 유지보수가 어렵기때문에 곧 폐기할 프로그램이라고 생각하고, 기능은 아직 없지만 구조가 잘 짜여진 프로그램은 기능을 추가하면 되기 때문에 더 좋은 프로그램이라고 하였다.
 
-
+<br>
 ## 좋은 아키텍처를 만드는 방법
 
 코드를 쉽게 파악하고 쉽게 변경할 수 있게 돕는 규칙은 다음과 같다.
@@ -40,6 +40,7 @@ The goal of software architecture is to minimize the lifetime cost (*development
 >이것들이 다음 포스팅의 주제가 될 것이다.
 {: .prompt-tip}
 
+<br>
 ## 쉬운방법은 없나요?
 
 ### 아키텍처 패턴
@@ -55,6 +56,7 @@ The goal of software architecture is to minimize the lifetime cost (*development
 3. 각자의 프로젝트에 레시피를 적용해 보기
 4. 고민이 되는 지점들은 원칙에 맞게 타협하며 적용해보기
 
+<br>
 ## 어떤 아키텍처 패턴을 써야하나요?
 
 ### 계층형 아키텍처
@@ -95,10 +97,10 @@ C[영속성]  -->  B
 - 패키지 구조가 계층형 보다 복잡하다.
 - 레퍼런스가 적다.
 
-
+<br>
 ## Clean Architecture를 공부하는 방법
-- 클린 아키텍처 | Clean Architecture (Robert C. Martin)
-- 만들면서 배우는 클린 아키텍처 | Get Your Hands Dirty on Clean Architecture (Tom hombergs)
+- 클린 아키텍처  Clean Architecture (Robert C. Martin)
+- 만들면서 배우는 클린 아키텍처  Get Your Hands Dirty on Clean Architecture (Tom hombergs)
 
 ### 잘모르겠으면 헥사고날 아키텍처
 클린아키텍처 기본 다이어그램과 가장 비슷하다.
@@ -106,6 +108,7 @@ C[영속성]  -->  B
 
 <img src="https://tech.osci.kr/wp-content/uploads/2023/03/hexagonal-architecture.png">
 
+<br>
 ## 아키텍처별 패키지/클래스 구조 비교
 ```mermaid
 flowchart  TD
@@ -119,14 +122,14 @@ s  -->  r[Repository]
 
 ### 계층형 아키텍처
 Controller, Service, Repository 패키지를 만들고 그 안에 각각의 계층을 모아둔다. 다음과 같은 패키지 구조이다.
->Controller > CompanyController, TeamController ...
-Service > CompanyService, TeamService ...
+>Controller > CompanyController, TeamController ...  
+Service > CompanyService, TeamService ...  
 Repository > CompanyRepository, TeamRepository ...
 
 ### 기능기반 패키지
 각각의 기능별로 Controller, Service, ServiceImpl, Repository를 모아둔다.  다음과 같은 패키지 구조이다.
->  Company > CompanyController, CompanyService...
-Team > TeamController, TeamService ...
+>  Company > CompanyController, CompanyService...  
+Team > TeamController, TeamService ...  
 Member > MemberController, MemberService ...
 
 장점
@@ -162,31 +165,32 @@ end
 단점
 - 클래스, 패키지가 많아진다.
 
+<br>
 ##  클린 아키텍처는 애매하다
 클린아키텍처는 핵심 원칙이 2가지 정도이기때문에 애매하다.
 
 ### JPA Entity와 Domain Entity, 분리해야하나요?
-> *분리했을때 얻는 이득이 크다
+> *분리했을때 얻는 이득이 크다. 
 영속성계층과 도메인계층 강결합이 되기 때문에 클린아키텍처가 아니게된다.*
-{: .prompt-tip}
+{: .prompt-info}
 
 ### JPARepository는 출력포트가 아니라 어댑터
 > *출력포트는 유스케이스가 필요로 하는 형태대로 유지되어야한다. 유스케이스가 DB의 세부사항에 의해 바뀌어야한다면 클린아키텍쳐가 아니다.*
-{: .prompt-tip}
+{: .prompt-info}
 
 ### 유스케이스가 다른 유스케이스를 호출 할때?
 >*컴포넌트를 별도 코드베이스로 분리하려는게 아니라면 직접 호출*
-{: .prompt-tip}
+{: .prompt-info}
 
 직접 호출해도 의존성 규칙에 위배되지 않는다. 별도 코드베이스로 분리려면 ```포트```를 통해서 노출,  호출하도록 변경
 
 ### 유스케이스를 꼭 인터페이스로 뽑아야하나?
 > *인터페이스로 뽑아야 한다.*
-{: .prompt-tip}
+{: .prompt-info}
 
 Controller가 Service의 구현에 대해 너무 많이 알지못하도록 막기위해 존재한다. 사고의 경계를 그어주는 역할
 
-
+<br>
 ## Reference
 
 - [NHN FORWARD 22] 클린 아키텍처 애매한 부분 정해 드립니다. [https://www.youtube.com/watch?v=g6Tg6_qpIVc](https://www.youtube.com/watch?v=g6Tg6_qpIVc)
