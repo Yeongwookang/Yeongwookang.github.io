@@ -81,7 +81,7 @@ Spring은 2004년 3월에 1.0이 배포됨
 
 ### 웹-Spring MVC
 
-- ```spring-web`` : 멀티파트 파일 업로드와 같은 기본 웹기능을 제공한다.
+- ```spring-web``` : 멀티파트 파일 업로드와 같은 기본 웹기능을 제공한다.
 - ```spring-webmvc``` : 완전한 기능을 갖춘 웹 MVC프레임워크인 Spring MVC를 제공하며 RESTful 서비스를 구현하는 기능이 포함되어있다.
 - ```spring-webflux``` : 스프링프레임워크 5에 도입된 기능으로 웹 애플리케이션의 리액티브 기능을 제공한다.
 
@@ -129,7 +129,7 @@ SpringCloud는 분산 시스템의 일반적인 패턴을 위한 솔루션을 �
 ### SpringHATEOAS
 
 >써본 것은 단 두 개 그마저도 이해하진 못했다, 추후 내용을 전부 배운뒤 각 파트를 채워볼 생각이다. 
-{:.prompt-warn}
+{:.prompt-warning}
 
 
 ## Reference
