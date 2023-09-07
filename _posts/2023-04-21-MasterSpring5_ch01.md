@@ -1,0 +1,136 @@
+   ---
+title : Mastering Spring5 Ch01
+date : 2023-04-21 00:00:00 +09:00
+categories : [Backend, ComputerScience]
+tags : [study, backend, cs] 
+mermaid: true
+---
+##  Spring의 역사
+Spring은 2004년 3월에 1.0이 배포됨
+핵심기능은 DI, 웹MVC, AOP 등
+모듈을 추가할 수 있음
+
+아키텍처는 지난 10년간 지속적으로 발전했고, 이제는 MSA(Micro Service Architecture)로 거의 이주중이다.
+
+## Spring이 인기있는 이유는 무엇일까?
+
+### 느슨한 결합 및 테스트 가능성
+```Java EE 어플리케이션```은 이전에 테스트가 매우 어려웠다. 배포를 하지 않으면 테스트가 되지 않았다. 스프링은 **의존 관계로 느슨하게 클래스간 결합**을 하기 때문에 이를 ```Mock```로 대체하여 테스트가 하기 쉽다.
+
+>*이 책을 이제야 쳐다보는 것이 부끄러울 정도이다. 테스트 처리가 안된다는 것은 결국 CI가 안된다는 것이고 **Test가 가능한 코드를 애초에 염두에 두지않고** 코딩을 했던 과거의 나를 반성한다.*
+{:.prompt-warn}
+
+### 아키텍처의 유연성
+```Spring```은 팔방미인을 목표로 하지 않는다. 어플리케이션의 서로 다른 부분들 간의 결합을 줄이고, **테스트**할 수 있게 만드는 핵심 작업에 중점을 두면서 **사용자가 선택한 프레임워크와 훌륭한 통합 기능을 제공**한다.
+
+- Web Application을 위해 Spring MVC를 제공하지만, struts, Vaadin, JSF 등 모든 웹 프레임워크를 지원한다.
+- Bean은 간단한 비즈니스 로직의 구현을 제공하지만, 자바의 EJB와 통합 될 수 있다.
+- DB도 Spring JDBC모듈을 제공하고, JPA나 Hibernate, mybatis를 지원한다.
+- Spring AOP를 제공해 Cross-cutting(로깅, 트랜젝션, 시큐리티 등)을 구현할 수 있지만, AspectJ같은 AOP를 지원한다.
+
+### 복잡한 코드 감소
+	PreparedStatement st =null;
+	try{
+		st = conn.prepareStatement(INSERT_TODO_QUERY);
+	} catch(SQLException e) {
+		logger.error("Failed :"+ INSERT_TODO_QUERY, e);
+	} finally {
+		if(st!=null){
+			try{
+				st.close();
+			} catch(SQLException e){
+			}
+		}
+	}
+
+>*어디서 많이 본 코드이다, SSLMS라는 학사관리 프로그램 만들때 저런 코드를 썼었다. 특히 저 finally에 있는 구문은 어차피 확인도 안할 오류인데 왜 쓰는지 정말 이해가 가지 않았다.*
+{:.prompt-tip}
+
+예외를 처리하는 것을 한 군데서 하지 않으니 코드의 유지보수도 어렵고, 로그에 오류가 떠야만 고칠 수 있어서 좋은 방식이 아니었다.
+
+	jdbcTemplate.update(INSERT_TODO_QUERY,
+	bean.getDescription(), bean.isDone());
+
+
+## Spring은 어플리케이션 아키텍처의 진화에 어떻게 적응 했을까?
+
+어플리케이션 아키텍처는 모놀리식 에서 벗어나 현재는 MSA라고 불리는 마이크로서비스 아키텍처로 진화하였다. ```Spring```은 SpringBoot와 JPA(Hibernate)로 빠르게 마이크로서비스를 구축할 수 있다.
+
+1. 사용할 스프링MVC, JPA, Hibernate의 호환가능 한 버전을 결정한다.
+2. 다른 모든 레이어(웹, 비즈니스, 데이터)가 통합된 스프링 컨텍스트를 설정한다.
+3. 구성관리, 단위테스트, 트랜젝션관리, 로깅 및 시큐리티 수행방법을 결정한다.
+
+>실제 의사결정 과정과 비슷한가보다~ 하고 봤다.  새로운 프로젝트를 할 때 참고는 해보겠다..
+{:.prompt-warn}
+
+## Spring에서 가장 중요한 모듈은 뭘까?
+
+### 스프링 코어 컨테이너
+
+- ```spring-core``` : 다른 스프링 모듈이 사용하는 유틸리티
+- ```spring-beans``` : 의존관계 주입을 제공
+- ```spring-context``` : BeanFactory를 확장한 ApplicationContext를 구현하고 리소스 로딩과 국제화 지원을 제공
+- ```spring-expression``` : EL(JSP의 표현언어)를 확장하고 빈속성 액세스와 처리를 위한 언어를 제공
+
+### 크로스 컷팅
+크로스 컷팅은 로깅과 시큐리티를 포함한 **모든 애플리케이션 레이어에 적용** 할 수 있다. **AOP**는 일반적으로 크로스 컷팅을 구현하는 데 사용된다.
+- ```spring-aop``` : 메소드 인터셉터와 포인트 컷으로 AOP(관점지향 프로그래밍)의 기본적인 지원을 제공
+- ```spring-aspects``` : AspectJ제공
+- ```spring-instrument``` : 기본적 instrumentation 제공
+- ```spring-test``` : test 제공
+
+### 웹-Spring MVC
+
+- ```spring-web`` : 멀티파트 파일 업로드와 같은 기본 웹기능을 제공한다.
+- ```spring-webmvc``` : 완전한 기능을 갖춘 웹 MVC프레임워크인 Spring MVC를 제공하며 RESTful 서비스를 구현하는 기능이 포함되어있다.
+- ```spring-webflux``` : 스프링프레임워크 5에 도입된 기능으로 웹 애플리케이션의 리액티브 기능을 제공한다.
+
+> 오 설명만 했는데도 아무것도 모른다. 특히 webflux는 요즘 심심찮게 경력분들한테 보이던데 잘 알아 두면 좋을것 같다.
+{:.prompt-tip}
+
+### 비즈니스레이어
+
+비즈니스 레이어는 애플리케이션의 비즈니스로직을 실행하는데 초점을 맞춘다. ```Spring```에서는 비즈니스로직이 **POJO(Plain Old Java Object)**로 구현된다.
+
+- ```spring-tx``` : POJO 및 다른 클래스에 대한 선언적 트랜잭션 관리를 제공한다.
+
+### 데이터 레이어
+
+애플리케이션의 데이터레이어는 일반적으로 데이터베이스나 **외부 인터페이스와 통신**한다. 데이터레이어와 관련된 중요한 스프링 모듈중 일부는 다음과 같다.
+
+- ```spring-jdbc``` : 상용구 코드를 방지하기 위해 JDBC를 추상화한다.
+- ```spring-orm``` : ORM(Object-Relational Mapping)프레임워크와 스펙(JPA, H2 등) 과의 통합을 제공한다.
+- ```spring-oxm``` : XML 매핑통합객체를 제공한다. JAXB, Castor 등과 같은 프레임워크를 지원한다.
+- ```spring-jms``` : 상용구 코드를 방지하기 위해 JMS를 추상화 한다.
+
+> 나는 백엔드 개발자가 되고 싶다면서 도대체 아는게 뭘까? 그저 Spring이 이렇게 쓰면 해주던데? 라고 생각한 것은 아닐까?
+{:.prompt-tip}
+
+## Spring Project 중 중요한 것은 무엇일까?
+
+### SpringBoot
+마이크로 서비스 및 웹 애플리케이션을 개발하는 동안 해결해야 할 과제는 다음과 같다.
+
+- 프레임워크 선택 및 호환가능한 프레임워크 버전 결정
+- 개발 환경이 바뀔 수도 있다
+- 상태 점검 및 모니터링 - 애플리케이션의 특정 부분이 다운된 경우에 알림 제공
+- 배포 환경 결정 및 애플리케이션 구성
+
+SpringBoot는 이러한 모든 문제를 해결할 수 있고, 5장에서 관련 내용을 배운다.
+
+
+### SpringCloud
+
+SpringCloud는 분산 시스템의 일반적인 패턴을 위한 솔루션을 제공한다. 스프링 클라우드로 공통 패턴을 구현하는 어플리케이션을 신속하게 생성할 수 있다.
+
+### SpringData
+### SpringBatch
+### SpringSecurity
+### SpringHATEOAS
+
+>써본 것은 단 두 개 그마저도 이해하진 못했다, 추후 내용을 전부 배운뒤 각 파트를 채워볼 생각이다. 
+{:.prompt-warn}
+
+
+## Reference
+- Mastering Spring5 [Ranga Rao Karanam, packtpub]
