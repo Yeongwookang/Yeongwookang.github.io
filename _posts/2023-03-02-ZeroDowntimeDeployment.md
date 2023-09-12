@@ -1,7 +1,7 @@
 ---
 title : 무중단 배포?
 date : 2023-03-02 00:00:00 +09:00
-categories : [CI/CD]
+categories : [CI/CD, CI/CD]
 tags : [study, ci, cd] 
 mermaid: true
 ---

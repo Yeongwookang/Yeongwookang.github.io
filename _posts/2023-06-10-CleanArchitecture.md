@@ -1,6 +1,6 @@
 ---
 title : Clean Architecture
-date : 2023-06-04 00:00:00 +09:00
+date : 2023-06-10 00:00:00 +09:00
 categories : [Backend, Architecture]
 tags : [study,architecture] 
 mermaid: true
