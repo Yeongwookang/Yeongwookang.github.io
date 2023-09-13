@@ -1,7 +1,7 @@
 ---
 title : Selenium을 활용한 WebScrapper
 date : 2023-08-24 00:00:00 +09:00
-categories : [Project, Python]
+categories : [Project, Webscrapper]
 tags : [selenium, python, flask, project] 
 ---
 

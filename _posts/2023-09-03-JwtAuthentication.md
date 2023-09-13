@@ -1,8 +1,8 @@
 ---
-title : Spring Security + JWT 인증 개념
+title : JWT 인증
 date : 2023-09-05 00:00:00 +09:00
-categories : [Java, Spring]
-tags : [study, java, spring] 
+categories : [Backend, Authentication]
+tags : [study, backend, authentication, authorization] 
 mermaid: true
 ---
 
