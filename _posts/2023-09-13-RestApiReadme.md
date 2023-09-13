@@ -57,6 +57,9 @@ Todo List를 CRUD 해주는 RestfulAPI 개발
 ## DB 설계
 member Table이 전부이다.
 
+## Trouble Shooting
+관련 상세 문서를 확인 하려면 [[문서](https://yeongwookang.github.io/posts/RestApiTroubleShooting/)]
+
 ## 협업을 위해 노력한 점
 api문서를 swagger-ui 기반으로 남겼다. 
 
